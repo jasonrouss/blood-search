@@ -1,6 +1,6 @@
 import React from "react";
-import give from "../assets/give.jpg";
-import { deleteBlood } from "../features/blood/bloodSlice";
+import receiveImg from "../assets/receive.jpg";
+import { deleteReceive } from "../features/receive/receiveSlice";
 import { useDispatch } from "react-redux";
 
 /*Icons */
@@ -11,16 +11,15 @@ import { FiTrash } from "react-icons/fi";
 
 import { BiLocationPlus } from "react-icons/bi";
 
-function Feed({ bloodInfo }) {
+function ReceiveFeed({ receive }) {
 
   const dispatch = useDispatch();
- 
   return (
     <div className="flex justify-center">
-      <div className="flex justify-start shadow-md shadow-slate-600 mx-6 mt-10 h-[150px] w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
+      <div className="flex justify-start shadow-md shadow-slate-600 mx-2 mt-10 h-[150px] w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
         <figure>
           <img
-            src={give}
+            src={receiveImg}
             alt="donor profile"
             className=" w-16 h-16 mt-6 ml-8  mb-2 rounded-full border-2 border-slate-700"
           />
@@ -28,31 +27,31 @@ function Feed({ bloodInfo }) {
             className="text-slate-800 font-semibold mx-4"
             style={{ fontFamily: "Montserrat" }}
           >
-            {bloodInfo.name}
+            {receive.name}
           </figcaption>
         </figure>
 
         <div className="details ">
-          <div className="bType flex text-xl mt-3  font-semibold text-slate-800">
+          <div className="bType flex text-xl mt-3  font-semibold text-red-500">
             <BsDroplet className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
-            {bloodInfo.bloodType}
+            {receive.bloodType}
            {/* Only show delete button for logged in user
             */}
               <button
-                onClick={() => dispatch(deleteBlood(bloodInfo._id))}
+                onClick={() => dispatch(deleteReceive(receive._id))}
                 className="md:ml-72 ml-32 hover:cursor-pointer"
               >
-                <FiTrash className="text-red-500 " />
+                <FiTrash />
               </button>
            
           </div>
-          <div className="tel flex text-xl mt-3  font-semibold text-slate-800 ">
+          <div className="tel flex text-xl mt-3  font-semibold text-red-500 ">
             <AiOutlinePhone className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />
-            {bloodInfo.phoneNumber}
+            {receive.phoneNumber}
           </div>
-          <div className="location flex text-xl mt-3  font-semibold text-slate-800">
+          <div className="location flex text-xl mt-3  font-semibold text-red-500">
             <BiLocationPlus className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
-            {bloodInfo.location}
+            {receive.location}
           </div>
         </div>
       </div>
@@ -60,4 +59,4 @@ function Feed({ bloodInfo }) {
   );
 }
 
-export default Feed;
+export default ReceiveFeed;

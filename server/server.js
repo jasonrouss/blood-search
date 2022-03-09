@@ -18,5 +18,7 @@ app.use(errorHandler);
 // send hello
 app.get("/", (req, res) => res.send("Welcome to blood search API"));
 app.use("/v1/api/blood", require("./routes/bloodRoutes"));
+app.use("/v1/api/receive", require("./routes/receiveRoutes"));
+
 app.use("/v1/api/users", require("./routes/userRoutes"));
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

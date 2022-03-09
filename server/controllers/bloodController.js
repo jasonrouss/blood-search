@@ -2,20 +2,16 @@ const asyncHandler = require("express-async-handler");
 const Blood = require("../models/bloodModel");
 
 //@desc Get all blood requests
-//@route GET /api/blood
+//@route GET v1/api/blood
 //@access Public
 
 const getAllBlood = asyncHandler(async (req, res, next) => {
   const blood = await Blood.find();
-  res.status(200).json({
-    success: true,
-    count: blood.length,
-    data: blood,
-  });
+  res.status(200).json(blood);
 });
 
 //@desc Set blood data from logged in user
-//@route POST /api/blood
+//@route POST v1/api/blood
 //@access Private
 const setBlood = asyncHandler(async (req, res, next) => {
   // Check if bloodType is empty
@@ -34,18 +30,20 @@ const setBlood = asyncHandler(async (req, res, next) => {
     res.status(400);
     throw new Error("Please add a location");
   }
+
   const blood = await Blood.create({
     user: req.user.id,
     bloodType: req.body.bloodType,
     phoneNumber: req.body.phoneNumber,
     location: req.body.location,
+    name: req.user.name,
   });
 
   res.status(200).json({ success: true, data: blood });
 });
 
 //@desc Update blood data from logged in user
-//@route PUT /api/blood/:id
+//@route PUT v1/api/blood/:id
 //@access Private
 const updateBlood = asyncHandler(async (req, res, next) => {
     let blood = await Blood.findById(req.params.id);
@@ -65,7 +63,7 @@ const updateBlood = asyncHandler(async (req, res, next) => {
 
 
 //@desc Delete blood data from logged in user
-//@route DELETE /api/blood/:id
+//@route DELETE v1/api/blood/:id
 //@access Private
 const deleteBlood = asyncHandler(async (req, res, next) => {
     const blood = await Blood.findById(req.params.id);

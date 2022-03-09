@@ -9,7 +9,7 @@ const {
 
 const { protect } = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getAllBlood).post(protect, setBlood)
+router.route('/').get( getAllBlood).post(protect, setBlood)
 router.route('/:id').delete(protect, deleteBlood).put(protect, updateBlood)
 
 module.exports = router

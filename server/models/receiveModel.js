@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bloodSchema = new mongoose.Schema({
+const receiveSchema = new mongoose.Schema({
   // Refer to the User db model
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -9,8 +9,8 @@ const bloodSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: [true, "Please add a name"],
-  },
+    required: [true,'Please add a name']
+},
   bloodType: {
     type: String,
     required: [true, "Please add a blood type"],
@@ -23,7 +23,7 @@ const bloodSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please add a location"],
   },
-  
+
 });
 
-module.exports = mongoose.model("Blood", bloodSchema);
+module.exports = mongoose.model("Receive", receiveSchema);

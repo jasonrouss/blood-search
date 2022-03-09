@@ -1,10 +1,47 @@
 import React from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getBlood, reset } from "../features/blood/bloodSlice";
+import ClipLoader from "react-spinners/ClipLoader";
+
+/*Components */
+import Feed from "../components/Feed";
+
+/*Icons */
 import { BiDonateBlood } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import Feed from "../components/Feed"
-import {useNavigate} from "react-router-dom"
 function Give() {
-  const naviagte = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  const { blood, isLoading, isError, message } = useSelector(
+    (state) => state.blood
+  );
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getBlood());
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, isError, message, dispatch]);
+
+  if (isLoading) {
+    <div className="flex justify-center mt-72 mb-64">
+      <ClipLoader />
+    </div>;
+  }
   return (
     <>
       <div
@@ -16,20 +53,21 @@ function Give() {
       <div className="receiveIcon flex justify-center text-red-500 text-3xl md:text-5xl mt-8">
         <BiDonateBlood />
       </div>
-      <div className="description mx-2 flex justify-center text-red-500 text-xl font-bold mt-12 text-center"  style={{ fontFamily: "Montserrat" }}>
-    
-          Search and get in contact with people in need and donate blood.
-       
+      <div
+        className="description mx-2 flex justify-center text-red-500 text-xl font-bold mt-12 text-center"
+        style={{ fontFamily: "Montserrat" }}
+      >
+        Search and get in contact with people in need and donate blood.
       </div>
-     
-     {/* Search  */}
-     <div className="search mt-20  flex justify-center">
+
+      {/* Search  */}
+      <div className="search mt-20  flex justify-center">
         <div className="searchCard mx-4  flex justify-start">
           <input
             onChange=""
             placeholder="Search ... "
             value=""
-            className="focus:outline-none shadow-lg shadow-slate-500  w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-l-lg border-2 border-slate-700"
+            className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-l-lg border-2 border-slate-700"
           ></input>
           <button
             type="submit"
@@ -41,25 +79,27 @@ function Give() {
         </div>
         {/* Create */}
         <div className="create">
-          <button onClick={()=>{
-            naviagte('/create-receive')
-          }} className=" mx-2 px-4 py-1 mt-0.5 rounded-lg border-2 bg-red-500 shadow-lg shadow-slate-500 text-slate-900 border-slate-900 font-semibold" style={{ fontFamily: "Montserrat" }}>
+          <button
+            onClick={() => {
+              navigate("/create-give");
+            }}
+            className=" mx-2 px-4 py-1 mt-0.5 rounded-lg border-2 bg-red-500 shadow-lg shadow-slate-500 text-slate-900 border-slate-900 font-semibold"
+            style={{ fontFamily: "Montserrat" }}
+          >
             Create +
           </button>
         </div>
-
       </div>
-      
-        {/* Feed */}
-      
-        <Feed/>
-        <Feed/>
 
-        <Feed/>
+      {/* Feed */}
 
-        <Feed/>
-        <Feed/>
-
+      <section className="content">
+        <div className="blood">
+          {blood.map((bloodInfo) => (
+            <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
+          ))}
+        </div>
+      </section>
     </>
   );
 }

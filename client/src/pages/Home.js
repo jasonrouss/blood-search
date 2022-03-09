@@ -41,7 +41,7 @@ function Home() {
             <div className="rButton flex justify-center">
               <button
                 onClick={() => navigate("/receive")}
-                className="border-2 border-cyan-700 rounded-lg px-4 py-1 text-red-500 bg-slate-300 text-xl font-semibold mt-16 mx-4 mb-4"
+                className="border-2 border-red-700 rounded-lg px-4 py-1 bg-red-500 text-slate-300 text-xl font-semibold mt-16 mx-4 mb-4"
               >
                 View
               </button>
@@ -66,7 +66,7 @@ function Home() {
             <div className="rButton flex justify-center">
               <button
                 onClick={() => navigate("/give")}
-                className="border-2 border-cyan-700 rounded-lg px-4 py-1 text-red-500 bg-slate-300 text-xl font-semibold mt-16 mx-4 mb-4"
+                className="border-2 border-red-700 rounded-lg px-4 py-1 text-slate-300 bg-red-500 text-xl font-semibold mt-16 mx-4 mb-4"
               >
                 View
               </button>

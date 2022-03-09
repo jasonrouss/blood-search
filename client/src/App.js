@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Receive from "./pages/Receive";
 
 import Give from "./pages/Give";
+import Me from "./pages/Me";
 
 import CreateReceive from "./pages/CreateReceive";
 import CreateGive from "./pages/CreateGive";
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/me" element={<Me />}></Route>
 
             <Route path="/receive" element={<Receive />}></Route>
             <Route path="/give" element={<Give />}></Route>

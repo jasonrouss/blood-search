@@ -5,7 +5,7 @@ import { FiMail } from "react-icons/fi";
 const Footer = () => {
   return (
     <footer
-      className="footer relative   inset-x-0 bottom-0 mt-20 bg-zinc-900"
+      className="footer relative   inset-x-0 bottom-0 mt-40 bg-zinc-900"
     >
       {/* Icons */}
       <div className="flex mx-2 justify-center icons">
