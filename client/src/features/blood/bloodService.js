@@ -28,6 +28,9 @@ const getBlood = async (token) => {
   return response.data
 }
 
+
+
+
 // Delete user blood
 const deleteBlood = async (bloodId, token) => {
   const config = {
@@ -44,7 +47,7 @@ const deleteBlood = async (bloodId, token) => {
 const bloodService = {
   createBlood,
   getBlood,
-  deleteBlood,
+  deleteBlood
 }
 
 export default bloodService

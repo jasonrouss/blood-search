@@ -46,47 +46,53 @@ const setBlood = asyncHandler(async (req, res, next) => {
 //@route PUT v1/api/blood/:id
 //@access Private
 const updateBlood = asyncHandler(async (req, res, next) => {
-    let blood = await Blood.findById(req.params.id);
-    if (!blood) {
-        return next(new ErrorResponse(`Blood not found with id of ${req.params.id}`, 404));
-    }
-    // Make sure user is blood owner
-    if (blood.user.toString() !== req.user.id) {
-        return next(new ErrorResponse(`User not authorized to update data`, 401));
-    }
-    blood = await Blood.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-    });
-    res.status(200).json({ success: true, data: blood });
-    });
+  let blood = await Blood.findById(req.params.id);
+  if (!blood) {
+    return next(
+      new ErrorResponse(`Blood not found with id of ${req.params.id}`, 404)
+    );
+  }
+  // Make sure user is blood owner
+  if (blood.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`User not authorized to update data`, 401));
+  }
+  blood = await Blood.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  res.status(200).json({ success: true, data: blood });
+});
 
 
 //@desc Delete blood data from logged in user
 //@route DELETE v1/api/blood/:id
 //@access Private
 const deleteBlood = asyncHandler(async (req, res, next) => {
-    const blood = await Blood.findById(req.params.id);
-    if (!blood) {
-        return next(new ErrorResponse(`Blood not found with id of ${req.params.id}`, 404));
-    }
+  const blood = await Blood.findById(req.params.id);
+  if (!blood) {
+    return next(
+      new ErrorResponse(`Blood not found with id of ${req.params.id}`, 404)
+    );
+  }
 
-    //Check for user 
-    if(!req.user){
-        res.status(401);
-        throw new Error("User not found");
-    }
-    // Make sure user is blood owner
-    if (blood.user.toString() !== req.user.id) {
-        return next(new ErrorResponse(`User not authorized to update data`, 401));
-    }
-    blood.remove();
-    res.status(200).json({ success: true, data: {} });
-    });
+  //Check for user
+  if (!req.user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  // Make sure user is blood owner
+  if (blood.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`User not authorized to update data`, 401));
+  }
+  blood.remove();
+  res.status(200).json({ success: true, data: {} });
+});
 
-    module.exports={
-        getAllBlood,
-        setBlood,
-        updateBlood,
-        deleteBlood
-    }
+module.exports = {
+  getAllBlood,
+  setBlood,
+  updateBlood,
+  deleteBlood,
+
+  
+};

@@ -32,7 +32,7 @@ function ReceiveFeed({ receive }) {
         </figure>
 
         <div className="details ">
-          <div className="bType flex text-xl mt-3  font-semibold text-red-500">
+          <div className="bType flex text-xl mt-3  font-semibold text-slate-800">
             <BsDroplet className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
             {receive.bloodType}
            {/* Only show delete button for logged in user
@@ -41,15 +41,15 @@ function ReceiveFeed({ receive }) {
                 onClick={() => dispatch(deleteReceive(receive._id))}
                 className="md:ml-72 ml-32 hover:cursor-pointer"
               >
-                <FiTrash />
+                <FiTrash className="text-red-500" />
               </button>
            
           </div>
-          <div className="tel flex text-xl mt-3  font-semibold text-red-500 ">
+          <div className="tel flex text-xl mt-3  font-semibold text-slate-800 ">
             <AiOutlinePhone className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />
             {receive.phoneNumber}
           </div>
-          <div className="location flex text-xl mt-3  font-semibold text-red-500">
+          <div className="location flex text-xl mt-3  font-semibold text-slate-800">
             <BiLocationPlus className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
             {receive.location}
           </div>

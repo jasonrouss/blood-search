@@ -1,16 +1,19 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getReceive, reset } from "../features/receive/receiveSlice";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect, useState, useMemo } from "react";
 
 /*Components */
 import ReceiveFeed from "../components/ReceiveFeed";
+import Pagination from "../components/Pagination";
 
 /*Icons */
 
 import { RiUserReceivedLine } from "react-icons/ri";
-import { BsSearch } from "react-icons/bs";
+
+let PageSize = 5;
+
 function Receive() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +45,32 @@ function Receive() {
     </div>;
   }
 
+  /* Pagination */
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return receives.slice(firstPageIndex, lastPageIndex);
+  }, [receives, currentPage]);
+
+  /* Search */
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchInput !== "") {
+      const filteredData = receives.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(receives);
+    }
+  };
   return (
     <>
       {/* Title */}
@@ -66,17 +95,11 @@ function Receive() {
       <div className="search mt-20  flex justify-center">
         <div className="searchCard mx-4  flex justify-start">
           <input
-            placeholder="Search ... "
-            value=""
-            className="focus:outline-none shadow-lg shadow-slate-500  w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-l-lg border-2 border-slate-700"
+       type="text"
+       placeholder="Search ... "
+       onChange={(e) => searchItems(e.target.value)}
+       className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-lg border-2 border-slate-700"
           ></input>
-          <button
-            type="submit"
-            onClick=""
-            className=" border-y-2 border-r-2 w-12 rounded-r-lg px-4 shadow-lg shadow-slate-500 text-slate-200 border-slate-700 bg-red-500"
-          >
-            <BsSearch />
-          </button>
         </div>
         {/* Create */}
         <div className="create">
@@ -95,13 +118,33 @@ function Receive() {
       {/* Feed */}
 
       <section className="content">
-      
-          <div className="receives">
-            {receives.map((receive) => (
-              <ReceiveFeed key={receive._id} receive={receive} />
-            ))}
-          </div>
-       
+        {searchInput.length > 1 ? (
+          <>
+            <div className="receives">
+              {filteredResults.map((receive) => (
+                <ReceiveFeed key={receive._id} receive={receive} />
+              ))}
+            </div>
+          
+          </>
+        ) : (
+          <>
+           
+            <div className="receives">
+              {currentTableData.map((receive) => (
+                <ReceiveFeed key={receive._id} receive={receive} />
+              ))}
+            </div>
+            <div className="flex mt-10 justify-center">
+              <Pagination
+                currentPage={currentPage}
+                totalCount={receives.length}
+                pageSize={PageSize}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
+            </div>
+          </>
+        )}
       </section>
     </>
   );

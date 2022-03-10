@@ -1,18 +1,17 @@
-import React from "react";
-
 import { useNavigate } from "react-router-dom";
 
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlood, reset } from "../features/blood/bloodSlice";
 import ClipLoader from "react-spinners/ClipLoader";
-
 /*Components */
 import Feed from "../components/Feed";
-
+import Pagination from "../components/Pagination";
 /*Icons */
 import { BiDonateBlood } from "react-icons/bi";
-import { BsSearch } from "react-icons/bs";
+
+let PageSize = 5;
+
 function Give() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,6 +20,7 @@ function Give() {
   const { blood, isLoading, isError, message } = useSelector(
     (state) => state.blood
   );
+
   useEffect(() => {
     if (isError) {
       console.log(message);
@@ -42,6 +42,32 @@ function Give() {
       <ClipLoader />
     </div>;
   }
+  /* Pagination */
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return blood.slice(firstPageIndex, lastPageIndex);
+  }, [blood, currentPage]);
+
+  /* Search */
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchInput !== "") {
+      const filteredData = blood.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(blood);
+    }
+  };
   return (
     <>
       <div
@@ -64,18 +90,11 @@ function Give() {
       <div className="search mt-20  flex justify-center">
         <div className="searchCard mx-4  flex justify-start">
           <input
-            onChange=""
+            type="text"
             placeholder="Search ... "
-            value=""
-            className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-l-lg border-2 border-slate-700"
+            onChange={(e) => searchItems(e.target.value)}
+            className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-lg border-2 border-slate-700"
           ></input>
-          <button
-            type="submit"
-            onClick=""
-            className=" border-y-2 border-r-2 w-12 rounded-r-lg px-4 shadow-lg shadow-slate-500 text-slate-200 border-slate-700 bg-red-500"
-          >
-            <BsSearch />
-          </button>
         </div>
         {/* Create */}
         <div className="create">
@@ -94,11 +113,34 @@ function Give() {
       {/* Feed */}
 
       <section className="content">
-        <div className="blood">
-          {blood.map((bloodInfo) => (
-            <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
-          ))}
+        {searchInput.length > 1 ? (
+      <>
+      
+      <div className="blood">
+            {filteredResults.map((bloodInfo) => (
+              <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
+            ))}
+          </div>
+              
+      </>
+        ) : (
+        <>
+          <div className="blood">
+            {currentTableData.map((bloodInfo) => (
+              <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
+            ))}
+          </div>
+            <div className="flex mt-10 justify-center">
+          <Pagination
+            currentPage={currentPage}
+            totalCount={blood.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         </div>
+        </>
+        )}
+      
       </section>
     </>
   );
