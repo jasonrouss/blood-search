@@ -39,7 +39,7 @@ function ReceiveFeed({ receive }) {
             */}
               <button
                 onClick={() => dispatch(deleteReceive(receive._id))}
-                className="md:ml-72 ml-32 hover:cursor-pointer"
+                className="md:ml-64 ml-20 hover:cursor-pointer"
               >
                 <FiTrash className="text-red-500" />
               </button>

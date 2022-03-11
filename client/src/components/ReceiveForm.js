@@ -21,7 +21,7 @@ function ReceiveForm() {
     setPhoneNumber("");
     setLocation("");
     setBloodType("");
-  
+
     navigate("/receive");
   };
 
@@ -32,7 +32,6 @@ function ReceiveForm() {
         onSubmit={onSubmit}
         style={{ fontFamily: "Montserrat" }}
       >
-      
         {/*  First row */}
         <div className="form-group grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
           <div className="phone flex flex-col ">
@@ -72,14 +71,14 @@ function ReceiveForm() {
                 Select blood type
               </option>
 
-              <option>A+</option>
-              <option>B+</option>
-              <option>AB+</option>
-              <option>O+</option>
-              <option>A-</option>
-              <option>B-</option>
-              <option>AB-</option>
-              <option>O-</option>
+              <option>A+ apos </option>
+              <option>B+ bpos</option>
+              <option>AB+ abpos</option>
+              <option>O+ opos</option>
+              <option>A-aneg</option>
+              <option>B- bneg</option>
+              <option>AB- abneg</option>
+              <option>O- oneg </option>
             </select>
           </div>
         </div>

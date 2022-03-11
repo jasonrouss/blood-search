@@ -54,6 +54,7 @@ function Receive() {
     return receives.slice(firstPageIndex, lastPageIndex);
   }, [receives, currentPage]);
 
+
   /* Search */
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -131,7 +132,7 @@ function Receive() {
           <>
            
             <div className="receives">
-              {currentTableData.map((receive) => (
+              {currentTableData.slice(0).reverse().map((receive) => (
                 <ReceiveFeed key={receive._id} receive={receive} />
               ))}
             </div>
