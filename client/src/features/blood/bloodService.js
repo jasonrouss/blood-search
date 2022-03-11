@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/v1/api/blood/'
+const API_URL = 'https://bloodsearchapi.herokuapp.com/blood/'
 
 // Create new blood
 const createBlood = async (bloodData, token) => {

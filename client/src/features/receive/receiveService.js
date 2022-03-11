@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/v1/api/receive/";
+const API_URL = "https://bloodsearchapi.herokuapp.com/receive/";
 
 // Create new receive
 const createReceive = async (receiveData, token) => {
