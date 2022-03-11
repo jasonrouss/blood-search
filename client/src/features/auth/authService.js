@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://bloodsearchapi.herokuapp.com/users/'
+const API_URL = 'https://bloodsearchapi.herokuapp.com/v1/api/users/'
 
 // Register user
 const register = async (userData) => {
