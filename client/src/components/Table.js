@@ -104,7 +104,7 @@ function Table() {
           {/* AB- */}
           <div className="abneg grid grid-cols-3 gap-4 text-xl text-red-500     border-x-2  border-b-2 border-cyan-900 rounded-lg">
             <div className="bType font-bold mx-2 my-2 flex">
-              AB+ <BsDroplet className="mt-1 mx-2" />
+              AB- <BsDroplet className="mt-1 mx-2" />
             </div>
             <div className="canGive my-2 px-2 border-x-2 border-cyan-900">
               AB+ , AB-

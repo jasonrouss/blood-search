@@ -132,7 +132,7 @@ function Receive() {
           <>
            
             <div className="receives">
-              {currentTableData.slice(0).reverse().map((receive) => (
+              {currentTableData.map((receive) => (
                 <ReceiveFeed key={receive._id} receive={receive} />
               ))}
             </div>

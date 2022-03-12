@@ -7,7 +7,7 @@ const Receive = require("../models/receiveModel");
 //@access Public
 
 const getAllReceive = asyncHandler(async (req, res, next) => {
-  const receives = await Receive.find();
+  const receives = await Receive.find().sort({$natural:-1});
   res.status(200).json(receives);
 });
 

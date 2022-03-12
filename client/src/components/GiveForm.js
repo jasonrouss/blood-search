@@ -72,14 +72,14 @@ const navigate = useNavigate();
                 Select blood type
               </option>
 
-              <option>A+</option>
-              <option>B+</option>
-              <option>AB+</option>
-              <option>O+</option>
-              <option>A-</option>
-              <option>B-</option>
-              <option>AB-</option>
-              <option>O-</option>
+              <option>A+ apos </option>
+              <option>B+ bpos</option>
+              <option>AB+ abpos</option>
+              <option>O+ opos</option>
+              <option>A-aneg</option>
+              <option>B- bneg</option>
+              <option>AB- abneg</option>
+              <option>O- oneg </option>
             </select>
           </div>
         </div>

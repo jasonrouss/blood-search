@@ -6,7 +6,7 @@ const Blood = require("../models/bloodModel");
 //@access Public
 
 const getAllBlood = asyncHandler(async (req, res, next) => {
-  const blood = await Blood.find();
+  const blood = await Blood.find().sort({$natural:-1});
   res.status(200).json(blood);
 });
 
