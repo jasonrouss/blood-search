@@ -4,7 +4,7 @@ Site to find donors to receive blood  or volonteer to donate blood
 
 
 
-3 Key features: 
+# Key features: 
 
 ### Create Read and Delete posts to either receive or donate blood.
 
