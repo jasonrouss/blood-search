@@ -12,7 +12,7 @@ import { BiDonateBlood } from "react-icons/bi";
 
 let PageSize = 5;
 
-function Give() {
+function Give({ bloodInfo }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -79,11 +79,35 @@ function Give() {
       <div className="receiveIcon flex justify-center text-red-500 text-3xl md:text-5xl mt-8">
         <BiDonateBlood />
       </div>
+      {/* Details */}
       <div
-        className="description mx-2 flex justify-center text-red-500 text-xl font-bold mt-12 text-center"
+        className="description mx-4 flex justify-center text-red-500 text-xl font-bold mt-12 "
         style={{ fontFamily: "Montserrat" }}
       >
-        Search and get in contact with people in need and donate blood.
+        <ul>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Search:</span> Just type your search
+            term and it will automatically get filtered.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">BloodType:</span> To search type the
+            blood type letter and neg for - and pos for + attached to the letter
+            ex: apos (A+).
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Create:</span> Press the create
+            button so that people in need can contact you to receive blood from
+            you.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Card:</span> Contains 4 information
+            fields 1)Name 2)BloodType 3)Contact 4)Location.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Delete:</span> The delete button
+            represented by trash icon will only delete your post when pressed.
+          </li>
+        </ul>
       </div>
 
       {/* Search  */}
@@ -114,33 +138,30 @@ function Give() {
 
       <section className="content">
         {searchInput.length > 1 ? (
-      <>
-      
-      <div className="blood">
-            {filteredResults.map((bloodInfo) => (
-              <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
-            ))}
-          </div>
-              
-      </>
+          <>
+            <div className="blood">
+              {filteredResults.map((bloodInfo) => (
+                <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
+              ))}
+            </div>
+          </>
         ) : (
-        <>
-          <div className="blood">
-            {currentTableData.map((bloodInfo) => (
-              <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
-            ))}
-          </div>
+          <>
+            <div className="blood">
+              {currentTableData.map((bloodInfo) => (
+                <Feed key={bloodInfo._id} bloodInfo={bloodInfo} />
+              ))}
+            </div>
             <div className="flex mt-10 justify-center">
-          <Pagination
-            currentPage={currentPage}
-            totalCount={blood.length}
-            pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
-        </>
+              <Pagination
+                currentPage={currentPage}
+                totalCount={blood.length}
+                pageSize={PageSize}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
+            </div>
+          </>
         )}
-      
       </section>
     </>
   );

@@ -1,13 +1,12 @@
 const asyncHandler = require("express-async-handler");
 const Receive = require("../models/receiveModel");
 
-
 //@desc Get  receive posts from user
 //@route GET v1/api/receive
 //@access Public
 
 const getAllReceive = asyncHandler(async (req, res, next) => {
-  const receives = await Receive.find().sort({$natural:-1});
+  const receives = await Receive.find().sort({ $natural: -1 });
   res.status(200).json(receives);
 });
 

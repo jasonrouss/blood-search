@@ -22,8 +22,8 @@ function Table() {
               Can Give To{" "}
               <BiDonateBlood className="mt-1 mx-2 text-5xl sm:text-2xl" />{" "}
             </div>
-            <div className="canReceive flex mx-2 my-2 ">
-              Can Receive From{" "}
+            <div className="canReceive flex mx-1 my-2 ">
+              Can Receive From
               <RiUserReceivedLine className="mt-1 mx-2 text-7xl sm:text-2xl" />
             </div>
           </div>
@@ -75,10 +75,10 @@ function Table() {
             <div className="bType font-bold mx-2 my-2 flex">
               O+ <BsDroplet className="mt-1 mx-2" />
             </div>
-            <div className="canGive my-2 px-2 border-x-2 border-cyan-900">
-              B+/- , AB+/-
+            <div className="canGive my-2 px-4 border-x-2 border-cyan-900">
+              A+ , B+ , AB+ , O+
             </div>
-            <div className="canReceive mx-2 my-2">B- , O-</div>
+            <div className="canReceive mx-2 my-2">O+ , O-</div>
           </div>
           {/* O- */}
           <div className="oneg grid grid-cols-3 gap-4 text-xl text-red-500     border-x-2  border-b-2 border-cyan-900 rounded-lg">
@@ -109,7 +109,7 @@ function Table() {
             <div className="canGive my-2 px-2 border-x-2 border-cyan-900">
               AB+ , AB-
             </div>
-            <div className="canReceive mx-2 my-2"> AB+, A-, B- , O-</div>
+            <div className="canReceive mx-2 my-2"> AB-, A-, B- , O-</div>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ function Table() {
           download="table"
           target="_blank"
           rel="noreferrer"
-          href="https://cdn.discordapp.com/attachments/901150871927279636/948702073086693436/table.jpg"
+          href="https://cdn.discordapp.com/attachments/901150871927279636/952483509245710336/Screenshot_2022-03-13_102830.jpg"
         >
           {" "}
           Click to download image

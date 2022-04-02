@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {  FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 function Me() {
@@ -16,7 +16,6 @@ function Me() {
     <>
       {user ? (
         <>
-        
           <div>
             {/* Title */}
             <div className="flex mt-20 justify-center">
@@ -30,7 +29,7 @@ function Me() {
                 onClick={onLogout}
                 className="login mt-32 py-2 flex justify-center  rounded-lg  text-xl text-cyan-700  w-[275px] border-2 border-cyan-900  hover:border-red-700 hover:bg-red-500 hover:text-slate-200"
               >
-               <FaSignOutAlt className="mt-1  mx-2" /> 
+                <FaSignOutAlt className="mt-1  mx-2" />
               </button>
             </div>
           </div>
@@ -44,6 +43,7 @@ function Me() {
                 Login or Register
               </div>
             </div>
+
             {/* Login */}
             <div className="flex justify-center mt-20 mb-6">
               <button
@@ -56,7 +56,7 @@ function Me() {
               </button>
             </div>
             {/* Sign Up */}
-            <div className="flex justify-center mt-14 mb-52">
+            <div className="flex justify-center mt-14 mb-4">
               <button
                 onClick={() => {
                   navigate("/register");
@@ -65,6 +65,12 @@ function Me() {
               >
                 Register
               </button>
+            </div>
+            <div className="flex justify-center">
+              <div className="title text-cyan-800 font-bold mt-16 text-xl">
+                Or you can use Email: demo@demo.com Password: demo to try out
+                the app without signing up.
+              </div>
             </div>
           </div>
         </>

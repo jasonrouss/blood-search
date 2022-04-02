@@ -113,14 +113,16 @@ function Login() {
           </div>
 
           {/* Create an account */}
-          <div className="flex justify-center text-lg text-red-500 mt-6  font-semibold ">
-            Don't have an account , create one for free by clicking
-            <a
-              href="/register"
-              className="ml-1 underline hover:curoser-pointer"
-            >
-              here
-            </a>
+          <div className="flex justify-center">
+            <div className=" mx-4 text-lg text-red-500 mt-6  font-semibold ">
+              Don't have an account , create one for free by clicking
+              <a
+                href="/register"
+                className="ml-1 underline hover:curoser-pointer"
+              >
+                here
+              </a>
+            </div>
           </div>
           {/* Submit */}
           <div className="submit flex justify-center">

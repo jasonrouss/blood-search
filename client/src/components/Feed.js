@@ -17,7 +17,7 @@ function Feed({ bloodInfo }) {
  
   return (
     <div className="flex justify-center">
-      <div className="flex justify-start shadow-md shadow-slate-600 mx-6 mt-10 h-[150px] w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
+      <div className="flex justify-start shadow-md shadow-slate-600 mx-6 mt-10 md:h-[180px] md:w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
         <figure>
           <img
             src={give}
@@ -34,13 +34,13 @@ function Feed({ bloodInfo }) {
 
         <div className="details ">
           <div className="bType flex text-xl mt-3  font-semibold text-slate-800">
-            <BsDroplet className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
+            <BsDroplet className="md:text-3xl text-2xl text-red-500 mx-4" />{" "}
             {bloodInfo.bloodType}
            {/* Only show delete button for logged in user
             */}
               <button
                 onClick={() => dispatch(deleteBlood(bloodInfo._id))}
-                className="md:ml-56 ml-12 hover:cursor-pointer"
+                className="mx-4 hover:cursor-pointer"
               >
                 <FiTrash className="text-red-500 " />
               </button>

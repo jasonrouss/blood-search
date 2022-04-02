@@ -54,7 +54,6 @@ function Receive() {
     return receives.slice(firstPageIndex, lastPageIndex);
   }, [receives, currentPage]);
 
-
   /* Search */
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -86,20 +85,44 @@ function Receive() {
         <RiUserReceivedLine />
       </div>
       {/* Description */}
+      {/* Details */}
       <div
-        className="description mx-2 px-4 flex justify-center text-center text-red-500 text-xl font-bold mt-12"
+        className="description mx-4 flex justify-center text-red-500 text-xl font-bold mt-12 "
         style={{ fontFamily: "Montserrat" }}
       >
-        Search for blood donors near you with your matching blood type.
+        <ul>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Search:</span> Just type your search
+            term and it will automatically get filtered.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">BloodType:</span> To search type the
+            blood type letter and neg for - and pos for + attached to the letter
+            ex: oneg (O-).
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Create:</span> Press the create
+            button so that people who want to give can contact you and donate
+            blood to you.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Card:</span> Contains 4 information
+            fields 1)Name 2)BloodType 3)Contact 4)Location.
+          </li>
+          <li className="my-4 mx-4">
+            <span className="text-cyan-700">Delete:</span> The delete button
+            represented by trash icon will only delete your post when pressed.
+          </li>
+        </ul>
       </div>
       {/* Search  */}
       <div className="search mt-20  flex justify-center">
         <div className="searchCard mx-4  flex justify-start">
           <input
-       type="text"
-       placeholder="Search ... "
-       onChange={(e) => searchItems(e.target.value)}
-       className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-lg border-2 border-slate-700"
+            type="text"
+            placeholder="Search ... "
+            onChange={(e) => searchItems(e.target.value)}
+            className="focus:outline-none shadow-lg shadow-slate-500   w-[190px] md:w-[275px] h-10 px-3 pt-1 pb-2 font-semibold font-sans rounded-lg border-2 border-slate-700"
           ></input>
         </div>
         {/* Create */}
@@ -126,11 +149,9 @@ function Receive() {
                 <ReceiveFeed key={receive._id} receive={receive} />
               ))}
             </div>
-          
           </>
         ) : (
           <>
-           
             <div className="receives">
               {currentTableData.map((receive) => (
                 <ReceiveFeed key={receive._id} receive={receive} />

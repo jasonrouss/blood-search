@@ -16,7 +16,7 @@ function ReceiveFeed({ receive }) {
   const dispatch = useDispatch();
   return (
     <div className="flex justify-center">
-      <div className="flex justify-start shadow-md shadow-slate-600 mx-2 mt-10 h-[150px] w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
+      <div className="flex justify-start shadow-md shadow-slate-600 mx-2 mt-10 h-[180px] w-[550px] rounded-lg border-2 border-slate-600 bg-slate-300">
         <figure>
           <img
             src={receiveImg}
@@ -33,13 +33,13 @@ function ReceiveFeed({ receive }) {
 
         <div className="details ">
           <div className="bType flex text-xl mt-3  font-semibold text-slate-800">
-            <BsDroplet className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
+            <BsDroplet className="md:text-3xl text-2xl text-red-500 mx-4" />{" "}
             {receive.bloodType}
            {/* Only show delete button for logged in user
             */}
               <button
                 onClick={() => dispatch(deleteReceive(receive._id))}
-                className="md:ml-56 ml-12 hover:cursor-pointer"
+                className=" hover:cursor-pointer mx-4"
               >
                 <FiTrash className="text-red-500" />
               </button>
@@ -49,8 +49,8 @@ function ReceiveFeed({ receive }) {
             <AiOutlinePhone className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />
             {receive.phoneNumber}
           </div>
-          <div className="location flex text-xl mt-3  font-semibold text-slate-800">
-            <BiLocationPlus className="md:text-3xl text-2xl text-red-500 ml-4 mr-2" />{" "}
+          <div className="location flex mb-2 text-xl mt-3  font-semibold text-slate-800">
+            <BiLocationPlus className="md:text-3xl text-2xl text-red-500 ml-4 mr-2 mb" />{" "}
             {receive.location}
           </div>
         </div>

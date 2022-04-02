@@ -144,7 +144,7 @@ function Register() {
                 htmlFor="password2 "
                 className="text-3xl text-cyan-800 mb-4 font-semibold flex"
               >
-                Password:
+                Confirm Password:
               </label>
               <input
                 type="password"
