@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://bloodsearchapi.herokuapp.com/v1/api/receive/";
+const API_URL = "https://blood-search-main-backend.onrender.com/v1/api/receive/";
 
 // Create new receive
 const createReceive = async (receiveData, token) => {

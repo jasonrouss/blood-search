@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://bloodsearchapi.herokuapp.com/v1/api/blood/'
+const API_URL = 'https://blood-search-main-backend.onrender.com/v1/api/blood/'
 
 // Create new blood
 const createBlood = async (bloodData, token) => {
